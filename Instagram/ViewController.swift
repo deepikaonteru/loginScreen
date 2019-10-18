@@ -10,7 +10,14 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
+        // Creating fields
+        let userNameField = UITextField()
+        let passWordField = UITextField()
+        var logoView = UIImageView()
+        let loginButton = UIButton(type: .system)
+
+
+        override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
@@ -27,8 +34,7 @@ class ViewController: UIViewController {
 
     func addLogo() {
         
-        // Creeate UIImageView
-        var logoView = UIImageView()
+        // Create UIImageView
         
         // Add insta logo to UIImageView
         logoView.image = UIImage(named: "insta.png")
@@ -56,7 +62,6 @@ class ViewController: UIViewController {
 
     func addUserNameField() {
         // Create text field
-        let userNameField = UITextField()
         
         // Set properties
         userNameField.placeholder = "Username"
@@ -83,13 +88,12 @@ class ViewController: UIViewController {
     
     func addPassWordField() {
         // Create text field
-        let passWordField = UITextField()
         
         // Set properties
         passWordField.placeholder = "Password"
         passWordField.delegate = self
         passWordField.textAlignment = .center
-        
+        passWordField.isSecureTextEntry = true
         // Add userNameField as subview
         view.addSubview(passWordField)
         
@@ -109,14 +113,17 @@ class ViewController: UIViewController {
     
     
     func addLoginButton() {
-        let loginButton = UIButton(type: .system)
         
         loginButton.setTitle("Login", for: .normal)
-        loginButton.setTitleColor(.blue, for: .normal)
+        loginButton.setTitleColor(.white, for: .normal)
 
+        loginButton.backgroundColor  = .blue
+        
+        loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+        
         // Add userNameField as subview
                view.addSubview(loginButton)
-               
+        
         // Set translatesAutoreesiasjhd to false
                loginButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -129,6 +136,32 @@ class ViewController: UIViewController {
         yConstraint.isActive = true
         leftConstraint.isActive = true
         rightConstraint.isActive = true
+    }
+    
+    
+    @objc
+    func loginButtonPressed() {
+        print("Button pressed")
+        
+        // optional unwrapping, checking for null
+        // if username field is not empty, username is whatever is in the username text field
+        if let username: String = userNameField.text,
+            let password = passWordField.text {
+            if(!username.isEmpty && !password.isEmpty){
+                print(username)
+                // upper case Username... refers to class
+                // (username is from other file : this username is from the username we get above)
+                let usernameViewController = UsernameViewController(username: username)
+                    //UsernameViewController(username: username)
+                
+               self.navigationController?.pushViewController(usernameViewController, animated: true)
+                
+            } else{
+                print("Not Entered")
+
+            }
+        }
+        
     }
 }
 
