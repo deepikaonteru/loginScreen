@@ -151,10 +151,10 @@ class ViewController: UIViewController {
                 print(username)
                 // upper case Username... refers to class
                 // (username is from other file : this username is from the username we get above)
-                let usernameViewController = UsernameViewController(username: username)
+                let feedViewController = FeedViewController()
                     //UsernameViewController(username: username)
                 
-               self.navigationController?.pushViewController(usernameViewController, animated: true)
+               self.navigationController?.pushViewController(feedViewController, animated: true)
                 
             } else{
                 print("Not Entered")

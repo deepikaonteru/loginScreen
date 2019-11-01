@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		46EF754E235A6B5C005742E0 /* UsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EF754D235A6B5C005742E0 /* UsernameViewController.swift */; };
+		46EF754E235A6B5C005742E0 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EF754D235A6B5C005742E0 /* FeedViewController.swift */; };
 		46FAD1A423512C4E00765B01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FAD1A323512C4E00765B01 /* AppDelegate.swift */; };
 		46FAD1A623512C4E00765B01 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FAD1A523512C4E00765B01 /* SceneDelegate.swift */; };
 		46FAD1A823512C4E00765B01 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FAD1A723512C4E00765B01 /* ViewController.swift */; };
@@ -36,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		46EF754D235A6B5C005742E0 /* UsernameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameViewController.swift; sourceTree = "<group>"; };
+		46EF754D235A6B5C005742E0 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		46FAD1A023512C4E00765B01 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46FAD1A323512C4E00765B01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46FAD1A523512C4E00765B01 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 				46FAD1A523512C4E00765B01 /* SceneDelegate.swift */,
 				46FAD1A723512C4E00765B01 /* ViewController.swift */,
 				46FAD1A923512C4E00765B01 /* Main.storyboard */,
-				46EF754D235A6B5C005742E0 /* UsernameViewController.swift */,
+				46EF754D235A6B5C005742E0 /* FeedViewController.swift */,
 				46FAD1AC23512C5000765B01 /* Assets.xcassets */,
 				46FAD1AE23512C5000765B01 /* LaunchScreen.storyboard */,
 				46FAD1B123512C5000765B01 /* Info.plist */,
@@ -264,7 +264,7 @@
 			files = (
 				46FAD1A823512C4E00765B01 /* ViewController.swift in Sources */,
 				46FAD1A423512C4E00765B01 /* AppDelegate.swift in Sources */,
-				46EF754E235A6B5C005742E0 /* UsernameViewController.swift in Sources */,
+				46EF754E235A6B5C005742E0 /* FeedViewController.swift in Sources */,
 				46FAD1A623512C4E00765B01 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
