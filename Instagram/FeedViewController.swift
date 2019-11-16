@@ -11,17 +11,28 @@ import UIKit
 
 // new class represents new screen
 
+struct InstaPost: Codable {
+    var caption: String
+    var user: String
+}
+
+struct PostResponse: Codable {
+    var posts: [InstaPost]
+}
+
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
     // 1. make an instance of UITableView
     var tableView: UITableView
     
-    var posts: [Post] = [
-        Post(image: UIImage(named: "pancakes.png")!, caption: "yumm I love pancakes"),
-        Post(image: UIImage(named: "cookies.png")!, caption: "yumm I love cookies"),
-        Post(image: UIImage(named: "oreos.png")!, caption: "yumm I love oreos"),
-        Post(image: UIImage(named: "cupcake.png")!, caption: "yumm I love cupcake"),
-    ]
+//    var posts: [Post] = [
+//        Post(image: UIImage(named: "pancakes.png")!, caption: "yumm I love pancakes"),
+//        Post(image: UIImage(named: "cookies.png")!, caption: "yumm I love cookies"),
+//        Post(image: UIImage(named: "oreos.png")!, caption: "yumm I love oreos"),
+//        Post(image: UIImage(named: "cupcake.png")!, caption: "yumm I love cupcake"),
+//    ]
+    
+    var posts: [InstaPost] = []
     
     // make initializer
     init() {
@@ -37,6 +48,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         view.backgroundColor = .white
         setUpTableView()
+//        getInstaPosts()
         
     }
     
@@ -76,11 +88,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell = UITableViewCell()
-            
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCellID", for: indexPath) as! PostTableViewCell
-        //cell.textLabel?.text = posts[indexPath.row]
-        cell.postImageView.image = posts[indexPath.row].image
-        cell.postCaption.text = posts[indexPath.row].caption
+        let cell = tableView.dequeueReusableCell(withIdentifier: "postCellID", for: indexPath)
+            cell.textLabel?.text = posts[indexPath.row].caption
         return cell
     }
     
@@ -92,5 +101,50 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         print("selected\(indexPath.row)")
     }
     
-    
+    func getInstaPosts() {
+        // url that we want to make the request to
+            guard let url = URL(string: "https://api.myjson.com/bins/1djp56") else {
+                print("invalid url")
+                return
+            }
+        // create the request object using our url
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            
+            //start new session everytime its a new post
+            let session = URLSession(configuration: URLSessionConfiguration.default)
+            
+            let task = session.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    print("There was an error")
+                    return
+                }
+                guard let data = data else {
+                    print ("data is nil")
+                    return
+                }
+                
+                print(data)
+                let decoder = JSONDecoder()
+                
+                do {
+                    let postResponse = try decoder.decode(PostResponse.self, from: data)
+                    self.posts = postResponse.posts
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+    //                print(postResponse)
+    //                for post in postResponse.posts {
+    //                    print(post.caption)
+                } catch {
+                    print("There was an errror.")
+                }
+    //            print("completed network request")
+            }
+            task.resume()
+            print("sdskjjasn")
+        }
+
 }
+    
+
